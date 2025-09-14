@@ -1,0 +1,8 @@
+/**:
+  ros__parameters:
+    base_frame: "base_link"
+    end_frame: "iiwa_link_ee"
+
+robot_controller:
+  ros__parameters:
+    ready_position: [0.0, -45.0, 0.0, 45.0, 0.0, -45.0, 0.0]

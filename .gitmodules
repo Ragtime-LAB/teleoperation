@@ -1,0 +1,3 @@
+[submodule "ROS2_interfaces"]
+	path = ROS2_interfaces
+	url = https://github.com/Hessian-matrix/ROS2_interfaces.git
