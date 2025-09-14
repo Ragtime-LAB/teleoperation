@@ -1,5 +1,5 @@
 import time
-
+import numpy as np
 from pynput import keyboard
 
 import rclpy
@@ -23,7 +23,6 @@ class Teleoperation(Node):
 
         self._base_frame = self.get_parameter('base_frame').get_parameter_value().string_value
         self._end_frame = self.get_parameter('end_frame').get_parameter_value().string_value
-        print(self._base_frame)
 
         self._tf_init = False
         self._teleoperation_init = False
@@ -67,6 +66,9 @@ class Teleoperation(Node):
             self._init_tf_stamped.header.stamp = self.get_clock().now().to_msg()
             self._init_tf_stamped.header.frame_id = self._base_frame
             self._init_tf_stamped.child_frame_id = 'odom_base_frame'
+
+            if np.linalg.norm([msg.pose.pose.position.x, msg.pose.pose.position.y, msg.pose.pose.position.z]) > 1e-3:
+                return
 
             self._init_tf_stamped.transform.translation.x = msg.pose.pose.position.x
             self._init_tf_stamped.transform.translation.y = msg.pose.pose.position.y
@@ -133,7 +135,6 @@ class Teleoperation(Node):
         algo_ctrl.algo_reboot = False
         algo_ctrl.algo_reset = True
         self._algo_ctrl_publisher.publish(algo_ctrl)
-        time.sleep(10 * self._dt)
         self._start_teleoperation = True
 
     def _stop_teleoperate(self):
