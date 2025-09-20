@@ -21,7 +21,8 @@ class MujocoEnv(Node):
 
         self._mj_model = mujoco.MjModel.from_xml_path(self._mjcf_path)
         self._mj_data = mujoco.MjData(self._mj_model)
-        self._mj_viewer = mujoco.viewer.launch_passive(self._mj_model, self._mj_data, key_callback=self._key_callback)
+        self._mj_viewer = mujoco.viewer.launch_passive(self._mj_model, self._mj_data, key_callback=self._key_callback,
+                                                       show_left_ui=False, show_right_ui=False)
 
         self._mj_ctrl = Float64MultiArray()
         self._mj_ctrl.data = [0.0 for _ in range(self._mj_model.nu)]

@@ -157,13 +157,13 @@ class Teleoperation(Node):
 
         if key_char not in self._pressed_keys:
             self._pressed_keys.add(key_char)
-            if key_char == 'Key.ctrl':
+            if key_char == 'Key.enter':
                 self._stop_teleoperate()
 
                 request = SetBool.Request()
                 request.data = True
                 self._ready_motion_client.call(request)
-            elif key_char == 'Key.ctrl_r':
+            elif key_char == 'Key.space':
                 if self._start_teleoperation:
                     self._stop_teleoperate()
                 else:
