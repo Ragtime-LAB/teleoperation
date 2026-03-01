@@ -12,7 +12,7 @@ The source code is hosted on GitHub: [Ragtime-LAB/teleoperation](https://github.
 
 ```commandline
 # Clone teleoperation
-git clone --recurse-submodules git@github.com:Ragtime-LAB/Ragtime_Panthera.git
+git clone --recurse-submodules git@github.com:Ragtime-LAB/teleoperation.git
 ```
 
 ### Build
